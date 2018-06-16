@@ -1,31 +1,27 @@
-import bs4 as bs
-import urllib.request
-import os.path
+#This script was designed by Krishna Chatpar
+#This script uses the keywords Obama, Bonds, Amazon, and Warriors
+#to gather articles in the respective categories of: Politics, Finance, Business, and Sportsself.
+#Each article is written to a text file in it's respective folder
+#
+
+from bs4 import BeautifulSoup
+#import urllib.request
+#import os.path
 from nytimesarticle import articleAPI
 from time import sleep
 
 
-        # print(url_list)
-# Add your API key over here.
-
-#apis = ['4ca755df21fd4011a1e98f306cd2adef','ec36494e9e844996b49623f677fe683e','50f17c8215ba4113986c28bcc8f39bac','20f453825bfa4fadbfbf5cbc007dabab']
-# The query word is used to get the type of data you want.
-# In this particular case we get articles that contain Obama.
-# Refer http://dlab.berkeley.edu/blog/scraping-new-york-times-articles-python-tutorial for more details.
-
 categories = ['Sports','Business','Technology','Politics']
 
+#Loop through each of the four categories and scrape the articles
+#Each article is stored in it's own labeled sub folder in a respective file
 
-# Append all web_urls from the data received.
-
-
-# print(url_list)
 for i in range(4):
     cat = categories[i]
     sleep(5)
     if cat == 'Politics':
         api = articleAPI('4ca755df21fd4011a1e98f306cd2adef')
-        path = '/Users/adityakishanankaraboyana/CSE487Spring2018/lab3/'+categories[i]
+        path = '/Users/krishnachatpar/Desktop/Github/Articles/'+categories[i]
         articles = api.search(q="Obama")
         url_list=[]
         for data in articles['response']['docs']:
@@ -43,7 +39,7 @@ for i in range(4):
             f.close()
     if cat == 'Business':
         api = articleAPI('4ca755df21fd4011a1e98f306cd2adef')
-        path = '/Users/adityakishanankaraboyana/CSE487Spring2018/lab3/'+categories[i]
+        path = '/Users/krishnachatpar/Desktop/Github/Articles/'+categories[i]
         articles = api.search(q="Bonds")
         url_list=[]
         for data in articles['response']['docs']:
@@ -61,7 +57,8 @@ for i in range(4):
             f.close()
     if cat == 'Technology':
         api = articleAPI('4ca755df21fd4011a1e98f306cd2adef')
-        path = '/Users/adityakishanankaraboyana/CSE487Spring2018/lab3/'+categories[i]
+
+        path = '/Users/krishnachatpar/Desktop/Github/Articles/'+categories[i]
         articles = api.search(q="Amazon")
         url_list=[]
         for data in articles['response']['docs']:
@@ -79,8 +76,8 @@ for i in range(4):
             f.close()
     if cat == 'Sports':
         api = articleAPI('4ca755df21fd4011a1e98f306cd2adef')
-        path = '/Users/adityakishanankaraboyana/CSE487Spring2018/lab3/'+categories[i]
-        articles = api.search(q="Trump")
+        path = '/Users/krishnachatpar/Desktop/Github/Articles/'+categories[i]
+        articles = api.search(q="Warriors")
         url_list=[]
         for data in articles['response']['docs']:
             url_list.append(data['web_url'])
